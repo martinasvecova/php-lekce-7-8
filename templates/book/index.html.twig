@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book index{% endblock %}
+
+{% block body %}
+    <h1>Book index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>PageCount</th>
+                <th>Author</th>
+                <th>PublicationDate</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.name }}</td>
+                <td>{{ book.PageCount }}</td>
+                <td>{{ book.Author }}</td>
+                <td>{{ book.PublicationDate }}</td>
+                <td>{{ book.Price }}</td>
+                <td>
+                    <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
+                    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('book_new') }}">Create new</a>
+
+    <hr>
+    <a href="{{ path('book_listing_century') }}">Books by century</a><br>
+    <a href="{{ path('book_listing_author') }}">Books by author</a><br>
+    <a href="{{ path('book_listing_price') }}">Books by price</a><br>
+    <a href="{{ path('book_listing_new') }}">New books</a><br>
+
+{% endblock %}
